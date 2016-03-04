@@ -47,7 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CardFlip.cs" />
      <Compile Include="Assets\Scripts\FlipAnim.cs" />
-     <Compile Include="Assets\Scripts\Init.cs" />
+     <Compile Include="Assets\Scripts\Level1.cs" />
+     <Compile Include="Assets\Scripts\Ship.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
