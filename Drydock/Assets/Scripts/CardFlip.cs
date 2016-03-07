@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CardFlip : MonoBehaviour
+public class Card : MonoBehaviour
 {
 	public Transform asteroids;
 	public Transform exit;
@@ -14,6 +14,7 @@ public class CardFlip : MonoBehaviour
 	public int flip;
 	private bool flipping;
 	private float flipAngle;
+   
 	// Use this for initialization
 	void Start ()
 	{
@@ -40,7 +41,7 @@ public class CardFlip : MonoBehaviour
 
 	void Flipped ()
 	{
-		flip = (int)Mathf.Round (Random.Range (-0.4F, 7.0F));
+		
 		if (flip == 0) {
 			Instantiate (asteroids, gameObject.GetComponent<Transform> ().position, new Quaternion (0.0F, 0.0F, 0.0F, 0.0F));
 		}
@@ -68,5 +69,4 @@ public class CardFlip : MonoBehaviour
 
 		Destroy (gameObject);
 	}
-
 }
