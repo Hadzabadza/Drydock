@@ -18,59 +18,129 @@ public class Ship : MonoBehaviour
     public int engineHealt = 0;
     public int cargoBaysHealt = 0;
     bool firstMove = true;
+    bool moving = false;
+    bool moveDown = false;
+    bool moveUp = false;
+    bool moveRight = false;
+    bool moveLeft = false;
+    float temp;
 
     void Start ()
     {
         shipPos.y = 0;
         shipPos.y = 0;
+        temp = 0;
 	}
 
 	void Update ()
     {
-        if (firstMove)
+        if(!moving)
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (firstMove)
             {
-                gameObject.GetComponent<Transform>().Translate(new Vector2(0.0f, -4.5f));
-                y += 1;
-                firstMove = !firstMove;
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                if (x - 1 >= 0)
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    gameObject.GetComponent<Transform>().Translate(new Vector2(-3.0f, 0.0f));
-                    x -= 1;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                if (x + 1 <= Level1.cols-1)
-                {
-                    gameObject.GetComponent<Transform>().Translate(new Vector2(+3.0f, 0.0f));
-                    x += 1;
-                }                    
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (y - 1 >= 0)
-                {
-                    gameObject.GetComponent<Transform>().Translate(new Vector2(0.0f, 4.5f));
-                    y -= 1;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                if (y + 1 <= Level1.rows-1)
-                {
-                    gameObject.GetComponent<Transform>().Translate(new Vector2(0.0f, -4.5f));
+                    moveDown = true;
+                    moving = true;
                     y += 1;
+                    firstMove = !firstMove;
                 }
             }
-            gameObject.GetComponent<Transform>().Translate(new Vector2(shipPos.x, shipPos.y));
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    if (x - 1 >= 0)
+                    {
+                        moveLeft = true;
+                        moving = true;
+                        x -= 1;
+                        //Card.FlipAnim();
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    if (x + 1 <= Level1.cols - 1)
+                    {
+                        moveRight = true;
+                        moving = true;
+                        x += 1;
+                        //Card.FlipAnim();
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (y - 1 >= 0)
+                    {
+                        moveUp = true;
+                        moving = true;
+                        y -= 1;
+                        //Card.FlipAnim();
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    if (y + 1 <= Level1.rows - 1)
+                    {
+                        moveDown = true;
+                        moving = true;
+                        y += 1;
+                        
+                    }
+               }
+           }
+       }
+       else
+       {
+            if(moveDown)
+            {
+                gameObject.GetComponent<Transform>().Translate(new Vector2(0.0f, -0.01f));
+                temp -= 0.01f;
+                Debug.Log(temp);
+                if (temp < -4.5f)
+                {
+                    Debug.Log("ciao");
+                    moveDown = false;
+                    moving = false;
+                    temp = 0;
+                    
+                }
+            }
+            else if(moveUp)
+            {
+                gameObject.GetComponent<Transform>().Translate(new Vector2(0.0f, 0.01f));
+                temp += 0.01f;
+                if (temp > 4.5f)
+                {
+                    moveUp = false;
+                    moving = false;
+                    temp = 0;
+                }
+            }
+            else if(moveRight)
+            {
+                gameObject.GetComponent<Transform>().Translate(new Vector2(0.05f, 0.0f));
+                temp += 0.05f;
+                if (temp > 3.0f)
+                {
+                    moveRight = false;
+                    moving = false;
+                    temp = 0;
+                }
+            }
+            else if(moveLeft)
+            {
+                gameObject.GetComponent<Transform>().Translate(new Vector2(-0.01f, 0.0f));
+                temp -= 0.01f;
+                if (temp < -3.0f)
+                {
+                    moveLeft = false;
+                    moving = false;
+                    temp = 0;
+                }
+            }
         }
+        gameObject.GetComponent<Transform>().Translate(new Vector2(shipPos.x, shipPos.y));
     }
 }
+
