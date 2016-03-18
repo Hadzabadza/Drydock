@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Store.unity
+- path: Assets/Scenes/Drydock.unity
   isLoaded: 1
   isActive: 1

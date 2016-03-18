@@ -32,19 +32,27 @@ public class CardBack : MonoBehaviour
 			if (type == 0) {
 				GameObject aCard=Instantiate (asteroids, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 				aCard.GetComponent<ActiveCard> ().TT = TT;
-			}
+                CardsEvent.show = true;
+                CardsEvent.MessageBoxIndex =5;
+            }
 			if (type == 1) {
 				GameObject aCard=Instantiate (bandits, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 				aCard.GetComponent<ActiveCard> ().TT = TT;
-			}
+                CardsEvent.show = true;
+                CardsEvent.MessageBoxIndex =4;
+            }
 			if (type == 2) {
 				GameObject aCard=Instantiate (trader, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 				aCard.GetComponent<ActiveCard> ().TT = TT;
-			}
+                CardsEvent.show = true;
+                CardsEvent.MessageBoxIndex =6;
+            }
 			if (type == 3) {
 				GameObject aCard=Instantiate (exit, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 				aCard.GetComponent<ActiveCard> ().TT = TT;
-			}
+                CardsEvent.show = true;
+                CardsEvent.MessageBoxIndex =3;
+            }
 			if (type == 4) {
 				GameObject aCard=Instantiate (drydock, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 				aCard.GetComponent<ActiveCard> ().TT = TT;
@@ -52,9 +60,10 @@ public class CardBack : MonoBehaviour
 			if (type == 5) {
 				GameObject aCard=Instantiate (nebula, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 				aCard.GetComponent<ActiveCard> ().TT = TT;
-			}
-
-			Destroy (gameObject);
+                CardsEvent.show = true;
+                CardsEvent.MessageBoxIndex =8;
+            }
+            Destroy (gameObject);
 		}
 
 

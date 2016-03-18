@@ -47,15 +47,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActiveCard.cs" />
      <Compile Include="Assets\Scripts\CardBack.cs" />
-     <Compile Include="Assets\Scripts\CardFlip.cs" />
-     <Compile Include="Assets\Scripts\CargoBayButton.cs" />
-     <Compile Include="Assets\Scripts\CargoBayCount.cs" />
+     <Compile Include="Assets\Scripts\CardsEvent.cs" />
      <Compile Include="Assets\Scripts\CreditBalance.cs" />
-     <Compile Include="Assets\Scripts\Level1.cs" />
      <Compile Include="Assets\Scripts\MainStage.cs" />
-     <Compile Include="Assets\Scripts\ShieldButton.cs" />
-     <Compile Include="Assets\Scripts\ShieldCount.cs" />
+     <Compile Include="Assets\Scripts\PartsCount.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />
+     <Compile Include="Assets\Scripts\StoreButtons.cs" />
      <Compile Include="Assets\Scripts\StoreCargoBay.cs" />
      <Compile Include="Assets\Scripts\StoreShield.cs" />
      <Compile Include="Assets\Scripts\Tooltip.cs" />

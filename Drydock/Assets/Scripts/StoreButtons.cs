@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CargoBayButton : MonoBehaviour
+public class StoreButtons : MonoBehaviour
 {
 
     // Use this for initialization
@@ -22,6 +22,15 @@ public class CargoBayButton : MonoBehaviour
         {
             CreditBalance.credits -= 1;
             Ship.cargoBays += 1;
+        }
+    }
+
+    public void buyShield()
+    {
+        if (CreditBalance.credits > 1)
+        {
+            CreditBalance.credits -= 2;
+            Ship.shields += 1;
         }
     }
 }

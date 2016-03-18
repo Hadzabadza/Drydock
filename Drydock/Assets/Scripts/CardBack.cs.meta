@@ -1,10 +1,22 @@
 fileFormatVersion: 2
 guid: fa587a45ab4e8c64d8d7dc0bd89ac8a7
-timeCreated: 1457973173
+timeCreated: 1458319984
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - asteroids: {instanceID: 0}
+  - nebula: {instanceID: 0}
+  - bandits: {instanceID: 0}
+  - trader: {instanceID: 0}
+  - exit: {instanceID: 0}
+  - drydock: {instanceID: 0}
+  - shipWreck: {instanceID: 0}
+  - treasure: {instanceID: 0}
+  - solarFlare: {instanceID: 0}
+  - deepSpace: {instanceID: 0}
+  - main: {instanceID: 0}
+  - TT: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

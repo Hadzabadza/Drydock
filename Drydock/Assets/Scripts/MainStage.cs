@@ -15,7 +15,7 @@ public class MainStage : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//level = 1;
+		//level = 8;
 		for (int i = 0; i < 2 + (level / 2 + level % 2); i++) {
 			for (int j = 0; j < 3 + (level / 2); j++) {
 				GameObject newCard = Instantiate (card, new Vector3 (-1.5f * (2.0f + level % 2) + i * 3.0f, -2.25f * (3.0f + level / 2) + j * 4.5f, 0.0f), gameObject.gameObject.GetComponent<Transform> ().rotation) as GameObject;
