@@ -7,10 +7,10 @@ public class Ship : MonoBehaviour
     public int x = 1;
     public int y = -1;
     public int credits = 3;
-    public int shields = 0;
+    static public int shields = 0;
     public int cannons = 0;
     public int engine = 0;
-    public int cargoBays = 0;
+    static public int cargoBays = 0;
     public int healt = 10;
     public int tempShield = 0;
     public int shieldHealt = 0;
