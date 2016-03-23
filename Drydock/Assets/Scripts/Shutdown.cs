@@ -22,4 +22,8 @@ public class Shutdown : MonoBehaviour {
 			gameObject.GetComponent<Image> ().sprite = offState;
 		}
 	}
+	void end()
+	{
+		Destroy (gameObject);
+	}
 }

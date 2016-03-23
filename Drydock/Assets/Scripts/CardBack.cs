@@ -20,8 +20,10 @@ public class CardBack : MonoBehaviour
 	public string tooltip;
 	[Multiline]
 	public string naah;
-	public bool active;
+	public bool resolved;
+	public bool allowed;
 	public int type;
+	public int index;
 
 	public GameObject main;
 	public GameObject TT;
@@ -44,56 +46,54 @@ public class CardBack : MonoBehaviour
 				main.GetComponent<MainStage> ().zoomSpeed = 0.0f;
 				main.GetComponent<MainStage> ().camSpeed = new Vector2 (0.0f, 0.0f);
 				main.GetComponent<MainStage> ().camFocus = gameObject.GetComponent<Transform> ().position;
+				main.GetComponent<MainStage> ().currentCard = gameObject;
 			}
 		}
 		state = anim.GetCurrentAnimatorStateInfo (0);
 		if (state.IsName ("Del")) {
+			GameObject aCard =null;
 			if (type == 0) {
-				GameObject aCard = Instantiate (drydock, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (drydock, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 1) {
-				GameObject aCard = Instantiate (exit, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
-			}
+				aCard = Instantiate (exit, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+				main.GetComponent<MainStage> ().exitUI.SetActive (true);
+				main.GetComponent<MainStage> ().interfaceLock=true;
+	}
 			if (type == 2) {
-				GameObject aCard = Instantiate (bandits, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (bandits, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 3) {
-				GameObject aCard = Instantiate (asteroids, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (asteroids, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 4) {
-				GameObject aCard = Instantiate (nebula, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (nebula, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 5) {
-				GameObject aCard = Instantiate (deepSpace, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (deepSpace, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 6) {
-				GameObject aCard = Instantiate (solarFlare, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (solarFlare, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 7) {
-				GameObject aCard = Instantiate (trader, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
+				aCard = Instantiate (trader, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
+
 			}
 			if (type == 8) {
-				GameObject aCard = Instantiate (shipwreck, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
-				aCard.GetComponent<ActiveCard> ().TT = TT;
-				aCard.GetComponent<ActiveCard> ().main = main;
-			}
+				aCard = Instantiate (shipwreck, gameObject.GetComponent<Transform> ().position, gameObject.GetComponent<Transform> ().rotation) as GameObject;
 
+			}
+			aCard.GetComponent<ActiveCard> ().TT = TT;
+			aCard.GetComponent<ActiveCard> ().main = main;
+			aCard.GetComponent<ActiveCard> ().index = index;
+			main.GetComponent<MainStage> ().events [index] = aCard;
+			main.GetComponent<MainStage> ().currentCard = aCard;
 			Destroy (gameObject);
 		}
 
@@ -102,20 +102,33 @@ public class CardBack : MonoBehaviour
 
 	void OnMouseDown ()
 	{
-		if ((!main.GetComponent<MainStage> ().zoomOut) && (!main.GetComponent<MainStage> ().zoom)&&(!main.GetComponent<MainStage> ().mGInProgress)) {
+		if ((!main.GetComponent<MainStage> ().interfaceLock)&&(allowed)&&(!main.GetComponent<MainStage> ().zoomOut) && (!main.GetComponent<MainStage> ().zoom)&&(!main.GetComponent<MainStage> ().mGInProgress)&&(main.GetComponent<MainStage> ().currentCard.tag=="RESOLVED"||main.GetComponent<MainStage> ().currentCard.tag=="EXIT"||main.GetComponent<MainStage> ().currentCard.tag=="DRYDOCK")) {
 			anim.CrossFade ("Clicked", 0.0f);
 			//Camera.main.GetComponent<Transform> ().Translate (new Vector3 (gameObject.GetComponent<Transform> ().position.x - Camera.main.GetComponent<Transform> ().position.x, gameObject.GetComponent<Transform> ().position.y - Camera.main.GetComponent<Transform> ().position.y, -10));
 			main.GetComponent<MainStage> ().zoom = true;
 			main.GetComponent<MainStage> ().zoomSpeed = 0.0f;
 			main.GetComponent<MainStage> ().camSpeed = new Vector2 (0.0f, 0.0f);
 			main.GetComponent<MainStage> ().camFocus = gameObject.GetComponent<Transform> ().position;
+			main.GetComponent<MainStage> ().currentCard = gameObject;
+			main.GetComponent<MainStage> ().SendMessage ("restoreShields");
 		}
 	}
 
 	void OnMouseOver(){
+		main.GetComponent<MainStage> ().SendMessage ("checkMovement");
 		if (TT.GetComponent<Tooltip> ().alpha < 1.0f) {
 			TT.GetComponent<Tooltip> ().alpha += 0.04f;
 		}
-		TT.GetComponent<Text> ().text = tooltip+naah;
+		if (allowed) {
+
+			TT.GetComponent<Text> ().text = tooltip;
+		} else {
+			TT.GetComponent<Text> ().text = tooltip + naah;
+		}
+	}
+
+	void removeCard()
+	{
+		Destroy (gameObject);
 	}
 }
