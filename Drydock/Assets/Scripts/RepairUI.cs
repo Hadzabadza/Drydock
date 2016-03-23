@@ -31,13 +31,14 @@ public class RepairUI : MonoBehaviour
 				partBTN.transform.SetParent (gameObject.transform);
 				partBTN.GetComponent<RepairBTN> ().part = parts [i];
 				parts [i] = partBTN;
-				partBTN.GetComponent<RectTransform> ().position = new Vector2 (transform.position.x - 65.0f * parts.Count + 130.0f * i, transform.position.y+0.0f);
+				partBTN.GetComponent<RectTransform> ().position = new Vector2 (65.0f+transform.position.x - 65.0f * parts.Count + 130.0f * i, transform.position.y+0.0f);
 			}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		main.GetComponent<MainStage> ().SendMessage ("lockUI");
 		repairsRemaining.GetComponent<Text> ().text = "x" + repairs;
 		if (repairs <= 0) {
 			exiter.SetActive (true);

@@ -51,6 +51,7 @@ public class pulse : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Asteroid") {
 			Instantiate (impact, transform.position, transform.rotation);
+			GetComponent<AudioSource> ().Play ();
 			//gameObject.GetComponent<Rigidbody2D> ().velocity = gameObject.GetComponent<Rigidbody2D> ().velocity+other.gameObject.GetComponent<Rigidbody2D> ().velocity;
 			//other.gameObject.GetComponent<Rigidbody2D>().velocity=other.gameObject.GetComponent<Rigidbody2D>().velocity*(-1);
 

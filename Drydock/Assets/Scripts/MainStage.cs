@@ -30,6 +30,8 @@ public class MainStage : MonoBehaviour
 	public GameObject traderUI;
 	public GameObject nebulaUI;
 	public GameObject repairUI;
+	public GameObject deepSpaceUI;
+	public GameObject controls;
 	public bool debug;
 	public List<GameObject> parts = new List<GameObject> ();
 	public Canvas canv;
@@ -53,6 +55,7 @@ public class MainStage : MonoBehaviour
 		mGAreaRef = Instantiate (miniGameArea, new Vector3 (-50, 0, 0), transform.rotation)as GameObject;
 		mGAreaRef.GetComponent<asteroid_spawn> ().main = gameObject;
 		mGAreaRef.GetComponent<asteroid_spawn> ().countdown = countdown;
+		mGAreaRef.GetComponent<asteroid_spawn> ().controls = controls;
 		parts.Add (Instantiate (PartBlueprint, transform.position, transform.rotation)as GameObject);
 		(parts [0]).GetComponent<Part> ().type = 0;
 		(parts [0]).GetComponent<Part> ().num = 0;
@@ -338,7 +341,11 @@ public class MainStage : MonoBehaviour
 	{
 		int golds = 0;
 		drydock.gameObject.SetActive (true);
-		(parts [0]).GetComponent<Part> ().hpCurrent = (parts [0]).GetComponent<Part> ().hpMax;
+		for (int i = 0; i < 2; i++) {
+			if ((parts [0]).GetComponent<Part> ().hpCurrent<(parts [0]).GetComponent<Part> ().hpMax)
+			(parts [0]).GetComponent<Part> ().hpCurrent++;
+		}
+
 		for (int i = parts.Count - 1; i > 0; i--) {
 			if ((parts [i]).GetComponent<Part> ().golden) {
 				golds++;
@@ -497,6 +504,7 @@ public class MainStage : MonoBehaviour
 	{
 		interfaceLock = true;
 		lossUI.SetActive (true);
+		GetComponent<AudioSource> ().Play();
 		BroadcastMessage ("end");
 	}
 

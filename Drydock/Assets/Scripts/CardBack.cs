@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CardBack : MonoBehaviour
 {
-	Animator anim;
+	public Animator anim;
 	AnimatorStateInfo state;
 
 	public GameObject drydock;

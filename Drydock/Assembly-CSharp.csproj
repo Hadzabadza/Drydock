@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\ChanceCard.cs" />
      <Compile Include="Assets\Scripts\ChanceCardBack.cs" />
      <Compile Include="Assets\Scripts\ChanceUI.cs" />
+     <Compile Include="Assets\Scripts\DeepSpaceFail.cs" />
+     <Compile Include="Assets\Scripts\DeepSpaceSearch.cs" />
      <Compile Include="Assets\Scripts\MainStage.cs" />
      <Compile Include="Assets\Scripts\Part.cs" />
      <Compile Include="Assets\Scripts\RepairBTN.cs" />

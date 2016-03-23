@@ -13,7 +13,7 @@ public class bandit_projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.x > GetComponentInParent<Transform>().position.x+Camera.main.orthographicSize*Camera.main.aspect || transform.position.x < GetComponentInParent<Transform>().position.x-Camera.main.orthographicSize*Camera.main.aspect || transform.position.y > GetComponentInParent<Transform>().position.y+Camera.main.orthographicSize || transform.position.y < GetComponentInParent<Transform>().position.y-Camera.main.orthographicSize) {
+		if (Camera.main.transform.position.x > GetComponentInParent<Transform>().position.x+Camera.main.orthographicSize*Camera.main.aspect || Camera.main.transform.position.x < GetComponentInParent<Transform>().position.x-Camera.main.orthographicSize*Camera.main.aspect || Camera.main.transform.position.y > GetComponentInParent<Transform>().position.y+Camera.main.orthographicSize || Camera.main.transform.position.y < GetComponentInParent<Transform>().position.y-Camera.main.orthographicSize) {
             Destroy(this.gameObject);
         }
     }

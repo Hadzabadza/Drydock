@@ -20,9 +20,11 @@ public class asteroid_spawn : MonoBehaviour
 	public GameObject main;
 	public GameObject newAster;
 	public GameObject countdown;
+	public GameObject controls;
 	public bool active;
 	public float escapeTime;
 	public float timer;
+	public bool hadHint;
 
 	// public GameObject Shield;
 	public GameObject player;
@@ -152,6 +154,12 @@ public class asteroid_spawn : MonoBehaviour
 
 	void startAsteroids ()
 	{
+		if (hadHint) {
+			controls.SetActive (false);
+		} else {
+			controls.SetActive (true);
+			hadHint = true;
+		}
 		delay = 0;
 		spawnTimer = 0;
 		timer = 0;
@@ -175,6 +183,12 @@ public class asteroid_spawn : MonoBehaviour
 
 	void startBandits ()
 	{
+		if (hadHint) {
+			controls.SetActive (false);
+		} else {
+			controls.SetActive (true);
+			hadHint = true;
+		}
 		timer = 0;
 		GameObject bandit = null;
 		player = Instantiate (Player, new Vector2(transform.position.x+Camera.main.orthographicSize/2,transform.position.y), gameObject.GetComponent<Transform> ().rotation) as GameObject;
@@ -203,6 +217,12 @@ public class asteroid_spawn : MonoBehaviour
 
 	void startAmbush ()
 	{
+		if (hadHint) {
+			controls.SetActive (false);
+		} else {
+			controls.SetActive (true);
+			hadHint = true;
+		}
 		timer = 0;
 		GameObject bandit = null;
 		player = Instantiate (Player, new Vector2(transform.position.x+Camera.main.orthographicSize/2*Camera.main.aspect,transform.position.y), gameObject.GetComponent<Transform> ().rotation) as GameObject;
@@ -240,5 +260,6 @@ public class asteroid_spawn : MonoBehaviour
 		main.GetComponent<MainStage> ().SendMessage ("focusCurrent");
 		if (main.GetComponent<MainStage> ().stunTime > 0)
 			main.GetComponent<MainStage> ().stunTime--;
+		controls.SetActive (false);
 	}
 }
